@@ -1,321 +1,190 @@
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ankush Kedar | AWS Developer </title>
+  <title>Ankush Kedar | AWS Developer & Administrator</title>
   <style>
-    /* Reset & base */
+    /* Reset and base */
     * {
-      box-sizing: border-box;
+      margin: 0; padding: 0; box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #333;
     }
     body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      display: flex;
-      height: 100vh;
-      background-color: #f0f4f8;
-      color: #222;
-      transition: background-color 0.3s, color 0.3s;
-    }
-
-    /* Dark mode */
-    body.dark {
-      background-color: #121212;
-      color: #ddd;
-    }
-
-    /* Sidebar */
-    .sidebar {
-      width: 320px;
-      background-color: #fff;
-      padding: 40px 20px;
-      box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      transition: background-color 0.3s, color 0.3s;
-    }
-    body.dark .sidebar {
-      background-color: #1f1f1f;
-      color: #ddd;
-    }
-    .sidebar img {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid #007acc;
-      margin-bottom: 20px;
-      box-shadow: 0 0 10px #007acc55;
-    }
-    .sidebar h1 {
-      margin: 0;
-      font-size: 28px;
-      color: #007acc;
-      margin-bottom: 5px;
-    }
-    .sidebar h2 {
-      margin: 0;
-      font-size: 18px;
-      font-weight: 400;
-      color: #555;
-    }
-    body.dark .sidebar h2 {
-      color: #aaa;
-    }
-
-    /* Vertical nav */
-    .nav {
-      flex-grow: 1;
-      padding: 40px;
-      background-color: #fff;
-      border-left: 1px solid #ddd;
-      display: flex;
-      flex-direction: column;
-      transition: background-color 0.3s, color 0.3s;
-      overflow-y: auto;
-    }
-    body.dark .nav {
-      background-color: #222;
-      border-color: #444;
-      color: #ddd;
-    }
-    .nav-buttons {
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
-      margin-bottom: 30px;
-    }
-    .nav-buttons button {
-      background-color: #007acc;
-      color: white;
-      border: none;
-      padding: 14px 20px;
-      font-size: 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      text-align: left;
-      width: 180px;
-      box-shadow: 0 2px 5px rgba(0, 122, 204, 0.4);
-    }
-    .nav-buttons button:hover,
-    .nav-buttons button.active {
-      background-color: #005b9f;
-      box-shadow: 0 4px 10px #005b9faa;
-    }
-
-    /* Dark mode toggle & resume button container */
-    .top-controls {
-      margin-bottom: 30px;
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-    .top-controls button {
-      background-color: #444;
-      color: white;
-      border: none;
-      padding: 10px 16px;
-      border-radius: 6px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: background-color 0.3s;
-    }
-    .top-controls button:hover {
-      background-color: #222;
-    }
-    body.dark .top-controls button {
-      background-color: #bbb;
-      color: #222;
-    }
-    body.dark .top-controls button:hover {
-      background-color: #ddd;
-    }
-
-    /* Sections */
-    .section {
-      display: none;
-      animation: fadeIn 0.3s ease forwards;
-    }
-    .section.active {
-      display: block;
-    }
-
-    /* Headings */
-    h2 {
-      color: #007acc;
-      margin-top: 0;
-      margin-bottom: 15px;
-      font-weight: 600;
-      font-size: 26px;
-    }
-    body.dark h2 {
-      color: #66aaff;
-    }
-
-    /* Lists */
-    ul {
-      padding-left: 20px;
+      background: #f9fafb;
       line-height: 1.6;
-      font-size: 16px;
+      padding: 20px;
     }
-
-    /* Contact links */
     a {
-      color: #007acc;
+      color: #0077cc;
       text-decoration: none;
     }
     a:hover {
       text-decoration: underline;
     }
-
-    /* Footer */
-    footer {
-      margin-top: auto;
-      padding: 20px;
+    header {
       text-align: center;
-      font-size: 14px;
-      color: #888;
-      border-top: 1px solid #ddd;
-      transition: color 0.3s, border-color 0.3s;
+      margin-bottom: 40px;
     }
-    body.dark footer {
+    header img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 15px;
+      border: 3px solid #0077cc;
+    }
+    header h1 {
+      font-size: 2.8rem;
+      margin-bottom: 5px;
+      color: #222;
+    }
+    header p {
+      font-size: 1.1rem;
+      color: #555;
+      margin-bottom: 10px;
+    }
+    .contact-info {
+      font-size: 1rem;
+      color: #555;
+      margin-bottom: 5px;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      padding: 30px 40px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      border-radius: 8px;
+    }
+    section {
+      margin-bottom: 40px;
+    }
+    section h2 {
+      border-bottom: 3px solid #0077cc;
+      padding-bottom: 8px;
+      margin-bottom: 20px;
+      color: #0077cc;
+      font-weight: 700;
+      font-size: 1.6rem;
+    }
+    ul {
+      list-style: inside disc;
+      margin-left: 10px;
+      color: #444;
+    }
+    ul li {
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .experience {
+      margin-bottom: 30px;
+    }
+    .job-title {
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: #222;
+      margin-bottom: 3px;
+    }
+    .company-duration {
+      font-style: italic;
+      font-size: 0.95rem;
       color: #666;
-      border-color: #444;
+      margin-bottom: 10px;
     }
-
-    /* Animations */
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px);}
-      to { opacity: 1; transform: translateY(0);}
+    .project-title {
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: #444;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #777;
+      padding: 15px 0;
+      border-top: 1px solid #ddd;
+    }
+    @media (max-width: 600px) {
+      .container {
+        padding: 20px 15px;
+      }
+      header h1 {
+        font-size: 2rem;
+      }
     }
   </style>
 </head>
 <body>
-  <aside class="sidebar">
-    <img src="pic.jpg" alt="Ankush Kedar Photo" />
+  <header>
+    <!-- Replace the src URL below with your GitHub image URL -->
+    <img src="https://github.com/Ankushkedar/Profile/blob/main/pic.png" alt="Ankush Kedar Profile Picture" />
     <h1>Ankush Kedar</h1>
-    <h2>AWS Developer | Cloud Engineer</h2>
-  </aside>
-
-  <main class="nav">
-    <div class="top-controls">
-      <button id="resumeBtn" title="Download Resume">⬇️ Download Resume</button>
-      <button id="toggleDarkBtn" title="Toggle Dark/Light Mode">🌙 Dark Mode</button>
-    </div>
-
-    <nav class="nav-buttons" role="tablist" aria-label="Portfolio Sections">
-      <button class="active" role="tab" aria-selected="true" aria-controls="about" id="tab-about" onclick="showSection('about', this)">About Me</button>
-      <button role="tab" aria-selected="false" aria-controls="skills" id="tab-skills" onclick="showSection('skills', this)">Technical Skills</button>
-      <button role="tab" aria-selected="false" aria-controls="certifications" id="tab-certifications" onclick="showSection('certifications', this)">Certifications</button>
-      <button role="tab" aria-selected="false" aria-controls="experience" id="tab-experience" onclick="showSection('experience', this)">Work Experience</button>
-      <button role="tab" aria-selected="false" aria-controls="projects" id="tab-projects" onclick="showSection('projects', this)">Projects</button>
-      <button role="tab" aria-selected="false" aria-controls="contact" id="tab-contact" onclick="showSection('contact', this)">Contact</button>
-    </nav>
-
-    <section id="about" class="section active" role="tabpanel" aria-labelledby="tab-about">
-      <h2>About Me</h2>
-      <p>I am a software developer with 4 years of experience specializing in cloud computing, microservices, and backend development using AWS and Python. Passionate about designing scalable, serverless architectures and automating infrastructure.</p>
-      <p>Currently working at Infosys as an Associate Consultant, previously 3 years at TCS.</p>
+    <p><strong>AWS Developer & Administrator</strong></p>
+    <p class="contact-info">Nasik, Maharashtra, 422606 | <a href="tel:+918379803650">+91 8379803650</a> | <a href="mailto:Kedarankush845@gmail.com">Kedarankush845@gmail.com</a> | <a href="https://linkedin.com/in/ankush-kedar" target="_blank" rel="noopener noreferrer">LinkedIn Profile</a></p>
+  </header>
+  <div class="container">
+    <section id="objective">
+      <h2>Objective</h2>
+      <p>Professional with 4+ years of experience in the IT industry, specializing in build release management, software configuration, design, development, and cloud implementation. Skilled in designing, deploying, and operating highly available, scalable, and fault-tolerant systems using Amazon Web Services (AWS).</p>
     </section>
-
-    <section id="skills" class="section" role="tabpanel" aria-labelledby="tab-skills">
-      <h2>Technical Skills</h2>
-      <ul>
-        <li>AWS: Lambda, ECS, S3, EventBridge, DynamoDB, ALB, CloudWatch, CloudTrail, Glue, Athena, Step Functions</li>
-        <li>Infrastructure as Code: AWS CDK, CloudFormation</li>
-        <li>DevOps Tools: Git, Azure DevOps, Jenkins</li>
-        <li>Programming Languages: Python, SQL</li>
-        <li>Containers: Docker, ECS</li>
-        <li>Monitoring: CloudWatch, X-Ray</li>
-      </ul>
+    <section id="experience">
+      <h2>Professional Experience</h2>
+      <div class="experience">
+        <div class="job-title">AWS Developer / Operations Engineer</div>
+        <div class="company-duration">Tata Consultancy Services, Pune | May 2021 – Present</div>
+        <div class="project-title">Project: TAKENAKA Corporation</div>
+        <ul>
+          <li>Architected, designed, implemented, and supported cloud-based infrastructure and solutions.</li>
+          <li>Used Python libraries like pandas, NumPy, boto3 to automate functionalities.</li>
+          <li>Created and managed S3 buckets for storing files and serving static web content.</li>
+          <li>Managed IAM roles, users, groups, and implemented MFA for AWS security.</li>
+          <li>Experienced with AWS networking concepts including Security Groups, Endpoints, and Routing.</li>
+          <li>Created RDS instances and wrote SQL queries to fetch data.</li>
+          <li>Handled Continuous Integration and Continuous Delivery (CI/CD) processes.</li>
+          <li>Implemented code testing tools like SonarQube and lifecycle configurations for Amazon SageMaker.</li>
+          <li>Performed deployment builds to production and troubleshooting.</li>
+          <li>Worked with AWS services: EC2, VPC, S3, RDS, Glue, Athena, CloudWatch, CloudTrail, CodeCommit, CodeBuild, CodeArtifact, CloudFormation, Auto Scaling, Lambda, Secrets Manager, Git, SQL, Jira, AWS CLI.</li>
+          <li>Developed cost-cutting automation scripts and worked extensively with APIs, Route 53 DNS, and code pipelines.</li>
+          <li>Handled all L3 activities independently and communicated with clients to implement new cloud services.</li>
+        </ul>
+      </div>
+      <div class="experience">
+        <div class="job-title">Associate Consultant (AWS Developer)</div>
+        <div class="company-duration">Infosys Limited, Pune | June 2024 – Present</div>
+        <div class="project-title">Project: KONE Corporation</div>
+        <ul>
+          <li>Enhanced KONE's digital infrastructure by migrating workloads to AWS cloud.</li>
+          <li>Designed, developed, and deployed RESTful APIs ensuring scalability and high performance.</li>
+          <li>Automated workflows by migrating serverless functions to AWS Lambda for performance and cost optimization.</li>
+          <li>Managed containerized applications using AWS ECS and configured AWS ALB for load balancing.</li>
+          <li>Built event-driven architectures using AWS EventBridge and implemented AWS SQS for asynchronous messaging.</li>
+          <li>Configured AWS CloudWatch for monitoring, debugging, alerts, and dashboards.</li>
+          <li>Used Azure DevOps for CI/CD pipelines and performed API testing with Postman.</li>
+          <li>Created SOPs and tested system alerts.</li>
+        </ul>
+      </div>
     </section>
-
-    <section id="certifications" class="section" role="tabpanel" aria-labelledby="tab-certifications">
+    <section id="certifications">
       <h2>Certifications</h2>
       <ul>
-        <li>AWS Certified Developer – Associate</li>
-        <li>AWS Certified Solutions Architect – Associate</li>
-        <li>AWS Certified SysOps Administrator – Associate</li>
-        <li>AWS Certified Cloud Practitioner</li>
+        <li>AWS Certified Developer Associate</li>
+        <li>AWS Certified Solutions Architect Associate</li>
+        <li>AWS Certified SysOps Administrator Associate</li>
+        <li>Google Certified Associate Cloud Engineer</li>
       </ul>
     </section>
-
-    <section id="experience" class="section" role="tabpanel" aria-labelledby="tab-experience">
-      <h2>Work Experience</h2>
-      <p><strong>Infosys (2021–Present)</strong></p>
-      <p>Working on AWS microservices, cloud migrations, and enterprise integrations for clients like KONE.</p>
-      <p><strong>TCS (2018–2021)</strong></p>
-      <p>Developed backend services and automation tools.</p>
-    </section>
-
-    <section id="projects" class="section" role="tabpanel" aria-labelledby="tab-projects">
-      <h2>Projects</h2>
+    <section id="education">
+      <h2>Education</h2>
       <ul>
-        <li><strong>Microservices Migration:</strong> Migrated Mulesoft APIs to AWS using ECS and ALB integration.</li>
-        <li><strong>Document Processing Pipeline:</strong> Used Lambda, Kafka, and SQS to process SAP-related documents efficiently.</li>
+        <li>Bachelor of Engineering - Pune University</li>
+        <li>Masters in Business Administration (Operations & SCM) - Pune University</li>
       </ul>
     </section>
-
-    <section id="contact" class="section" role="tabpanel" aria-labelledby="tab-contact">
-      <h2>Contact</h2>
-      <p><strong>Phone:</strong> 8379803650</p>
-      <p><strong>Email:</strong> <a href="mailto:kedarankush845@gmail.com">kedarankush845@gmail.com</a></p>
-      <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/ankushkedar" target="_blank" rel="noopener noreferrer">linkedin.com/in/ankushkedar</a></p>
-    </section>
-
-    <footer>
-      <p>© 2025 Ankush Kedar</p>
-    </footer>
-  </main>
-
-  <script>
-    // Section toggle & tab accessibility
-    function showSection(id, btn) {
-      // Hide all sections
-      document.querySelectorAll('.section').forEach(section => section.classList.remove('active'));
-      // Remove active from all buttons
-      document.querySelectorAll('.nav-buttons button').forEach(button => {
-        button.classList.remove('active');
-        button.setAttribute('aria-selected', 'false');
-      });
-      // Show selected section
-      document.getElementById(id).classList.add('active');
-      // Set button active
-      btn.classList.add('active');
-      btn.setAttribute('aria-selected', 'true');
-    }
-
-    // Dark/Light Mode toggle
-    const toggleBtn = document.getElementById('toggleDarkBtn');
-    toggleBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      if (document.body.classList.contains('dark')) {
-        toggleBtn.textContent = '☀️ Light Mode';
-        localStorage.setItem('theme', 'dark');
-      } else {
-        toggleBtn.textContent = '🌙 Dark Mode';
-        localStorage.setItem('theme', 'light');
-      }
-    });
-
-    // Load saved theme preference
-    window.addEventListener('DOMContentLoaded', () => {
-      if (localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark');
-        toggleBtn.textContent = '☀️ Light Mode';
-      }
-    });
-
-    // Resume download button
-    const resumeBtn = document.getElementById('resumeBtn');
-    resumeBtn.addEventListener('click', () => {
-      // Assuming resume.pdf is in the same folder as this HTML
-      const resumeURL = 'Ankush's Resume.pdf';
-      window.open(resumeURL, '_blank');
-    });
-  </script>
+  </div>
+  <footer>
+    &copy; 2025 Ankush Kedar. All rights reserved.
+  </footer>
 </body>
 </html>
