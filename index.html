@@ -5,255 +5,392 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ankush Kedar | AWS Developer</title>
   <style>
-    :root {
-      --bg-light: #f4f6fa;
-      --bg-dark: #1a1a1a;
-      --text-light: #333;
-      --text-dark: #f4f4f4;
-      --card-bg-light: #fff;
-      --card-bg-dark: #2a2a2a;
-      --accent: #007acc;
-    }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      scroll-behavior: smooth;
     }
 
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #eef2f5, #ffffff);
+      color: #333;
+      transition: background-color 0.3s, color 0.3s;
       display: flex;
-      height: 100vh;
-      color: var(--text-light);
-      background: linear-gradient(to right, #e2ebf7, #f9fafc);
-      transition: background 0.3s, color 0.3s;
-    }
-
-    body.dark {
-      background: var(--bg-dark);
-      color: var(--text-dark);
-    }
-
-    .sidebar {
-      width: 30%;
-      background-color: var(--card-bg-light);
-      padding: 40px 20px;
-      text-align: center;
-      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .sidebar img.profile {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 4px solid var(--accent);
-    }
-
-    .sidebar img.logo {
-      width: 60px;
-      position: absolute;
-      top: 20px;
-      left: 20px;
-    }
-
-    .sidebar h1 {
-      margin-top: 20px;
-      font-size: 26px;
-      color: var(--accent);
-    }
-
-    .sidebar h3 {
-      font-size: 18px;
-      color: #555;
-      margin-top: 6px;
-    }
-
-    .sidebar p.slogan {
-      margin-top: 14px;
-      font-style: italic;
-      color: #777;
-    }
-
-    .main {
-      width: 70%;
-      padding: 40px;
-      display: flex;
+      min-height: 100vh;
       flex-direction: column;
     }
 
-    .nav-buttons {
-      align-self: flex-end;
-      margin-bottom: 20px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
+    /* Dark mode styles */
+    body.dark {
+      background: #121212;
+      color: #e0e0e0;
     }
-
-    .nav-buttons button,
-    .dark-toggle,
-    .download-btn {
-      padding: 10px 14px;
-      background-color: var(--accent);
+    body.dark header {
+      background-color: #1e1e1edd;
+      box-shadow: 0 2px 10px rgba(255, 255, 255, 0.1);
+    }
+    body.dark nav a {
+      color: #80bfff;
+    }
+    body.dark nav a:hover {
+      color: #3399ff;
+    }
+    body.dark .tab-list {
+      background-color: #1e1e1e;
+      border-right: 1px solid #444;
+    }
+    body.dark .tab-list button {
+      color: #ccc;
+    }
+    body.dark .tab-list button.active {
+      background-color: #3399ff;
+      color: white;
+    }
+    body.dark section.content {
+      background: #222;
+      box-shadow: none;
+    }
+    body.dark .home img {
+      border-color: #3399ff;
+    }
+    body.dark button.toggle-darkmode {
+      background-color: #3399ff;
       color: white;
       border: none;
-      border-radius: 6px;
-      cursor: pointer;
+    }
+    body.dark button.toggle-darkmode:hover {
+      background-color: #2673cc;
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #ffffffee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 30px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+      z-index: 1000;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      width: 40px;
+      margin-right: 10px;
+    }
+
+    nav {
+      display: none; /* hide horizontal nav since we're using vertical tabs */
+    }
+
+    button.toggle-darkmode {
+      padding: 8px 16px;
       font-size: 14px;
+      cursor: pointer;
+      background: #007acc;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      transition: background-color 0.3s ease;
+    }
+    button.toggle-darkmode:hover {
+      background-color: #005a99;
     }
 
-    .nav-buttons button:hover,
-    .dark-toggle:hover,
-    .download-btn:hover {
-      background-color: #005b9f;
+    main {
+      margin-top: 70px; /* header height */
+      display: flex;
+      max-width: 1000px;
+      margin-left: auto;
+      margin-right: auto;
+      flex-grow: 1;
+      height: calc(100vh - 70px);
+      box-shadow: 0 0 10px rgba(0,0,0,0.05);
+      border-radius: 8px;
+      overflow: hidden;
+      background: white;
+      transition: background-color 0.3s ease;
     }
 
-    .section {
-      display: none;
-      background-color: var(--card-bg-light);
-      padding: 25px;
-      border-radius: 10px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
-      flex: 1;
+    main.dark {
+      background: #222;
+      box-shadow: none;
+    }
+
+    /* Vertical Tabs */
+    .tab-list {
+      display: flex;
+      flex-direction: column;
+      width: 220px;
+      background: #f7f9fc;
+      border-right: 1px solid #ddd;
+      overflow-y: auto;
+      transition: background-color 0.3s ease;
+    }
+
+    .tab-list button {
+      padding: 15px 20px;
+      background: none;
+      border: none;
+      text-align: left;
+      font-size: 16px;
+      color: #007acc;
+      font-weight: bold;
+      cursor: pointer;
+      border-left: 4px solid transparent;
+      transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+    }
+
+    .tab-list button:hover {
+      background-color: #e6f0fa;
+    }
+
+    .tab-list button.active {
+      background-color: #007acc;
+      color: white;
+      border-left: 4px solid #005a99;
+    }
+
+    section.content {
+      flex-grow: 1;
+      padding: 40px 40px 40px 40px;
       overflow-y: auto;
     }
 
-    body.dark .section {
-      background-color: var(--card-bg-dark);
+    section.content h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      color: #007acc;
     }
 
-    .section.active {
-      display: block;
+    /* Home Section */
+    .home {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-top: 40px;
     }
 
-    h2 {
-      color: var(--accent);
-      margin-bottom: 16px;
+    .home img {
+      width: 160px;
+      height: 160px;
+      border-radius: 50%;
+      border: 4px solid #007acc;
+      object-fit: cover;
+      transition: border-color 0.3s ease;
+    }
+
+    .home h1 {
+      margin-top: 20px;
+      font-size: 32px;
+      color: #007acc;
+    }
+
+    .home h3 {
+      margin-top: 6px;
+      font-size: 20px;
+      color: #333;
+    }
+
+    .home p {
+      margin-top: 14px;
+      font-style: italic;
+      color: #555;
+      max-width: 600px;
     }
 
     ul {
       padding-left: 20px;
+      margin-top: 10px;
     }
 
     ul li {
       margin-bottom: 6px;
     }
 
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin-top: 12px;
+    .contact-info p {
+      margin-bottom: 10px;
     }
 
-    .skills span {
-      background: #007acc;
-      color: white;
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 13px;
-    }
-
-    a {
+    .contact-info a {
       color: #007acc;
       text-decoration: none;
+    }
+
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
+
+    /* Download Button */
+    .btn-download {
+      margin-top: 20px;
+      padding: 10px 18px;
+      font-size: 16px;
+      background-color: #007acc;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background-color 0.3s ease;
+    }
+    .btn-download:hover {
+      background-color: #005a99;
+    }
+
+    @media (max-width: 768px) {
+      main {
+        flex-direction: column;
+        height: auto;
+        margin-top: 60px;
+        max-width: 100%;
+      }
+
+      .tab-list {
+        flex-direction: row;
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+        overflow-x: auto;
+      }
+
+      .tab-list button {
+        flex-grow: 1;
+        text-align: center;
+        border-left: none;
+        border-bottom: 4px solid transparent;
+        font-size: 14px;
+        padding: 10px;
+      }
+
+      .tab-list button.active {
+        border-bottom-color: #005a99;
+        border-left: none;
+        background-color: transparent;
+        color: #007acc;
+      }
+
+      section.content {
+        padding: 20px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="sidebar">
-    <img class="logo" src="aws.jpg" alt="AWS Logo" />
-    <img class="profile" src="pic.png" alt="Ankush Kedar" />
-    <h1>Ankush Kedar</h1>
-    <h3>AWS Developer</h3>
-    <p class="slogan">Building scalable cloud solutions with precision and passion.</p>
-  </div>
 
-  <div class="main">
-    <div class="nav-buttons">
-      <button onclick="showSection('home')">Home</button>
-      <button onclick="showSection('about')">About</button>
-      <button onclick="showSection('certifications')">Certifications</button>
-      <button onclick="showSection('expertise')">Expertise</button>
-      <button onclick="showSection('experience')">Experience</button>
-      <button onclick="showSection('contact')">Contact</button>
-      <button class="dark-toggle" onclick="toggleDark()">Toggle Theme</button>
-      <a href="Ankushs Resume.pdf" class="download-btn" download>Download Resume</a>
+  <header>
+    <div class="logo">
+      <img src="https://a0.awsstatic.com/libra-css/images/logos/aws_logo_smile_1200x630.png" alt="AWS Logo" />
     </div>
+    <button class="toggle-darkmode" aria-label="Toggle Dark/Light Mode">Dark Mode</button>
+  </header>
 
-    <div id="home" class="section active">
-      <h2>Welcome</h2>
-      <p>Professional with 4+ years of experience in IT industry. Specialized in cloud architecture, automation, and scalable application development.</p>
-    </div>
+  <main>
+    <nav class="tab-list" role="tablist" aria-orientation="vertical">
+      <button role="tab" aria-selected="true" aria-controls="home-panel" id="home-tab" class="active">Home</button>
+      <button role="tab" aria-selected="false" aria-controls="experience-panel" id="experience-tab">Experience</button>
+      <button role="tab" aria-selected="false" aria-controls="certifications-panel" id="certifications-tab">Certifications</button>
+      <button role="tab" aria-selected="false" aria-controls="contact-panel" id="contact-tab">Contact</button>
+    </nav>
 
-    <div id="about" class="section">
-      <h2>About Me</h2>
-      <ul>
-        <li>❖ Around 4 years of IT industry experience</li>
-        <li>❖ Strong in AWS, DevOps, Python</li>
-        <li>❖ Experience in Cloud-based applications & microservices</li>
-        <li>❖ Worked on agile projects (3.5+ years)</li>
-      </ul>
-      <h3>Skillset:</h3>
-      <div class="skills">
-        <span>AWS Cloud</span>
-        <span>DevOps</span>
-        <span>Python</span>
-        <span>Cost Optimization</span>
-        <span>Infra Design</span>
+    <section id="home-panel" class="content" role="tabpanel" aria-labelledby="home-tab">
+      <div class="home">
+        <img src="pic.jpg" alt="Ankush Kedar" />
+        <h1>Ankush Kedar</h1>
+        <h3>AWS Developer</h3>
+        <p>Building scalable cloud solutions with precision and passion.</p>
       </div>
-    </div>
+    </section>
 
-    <div id="certifications" class="section">
+    <section id="experience-panel" class="content" role="tabpanel" aria-labelledby="experience-tab" hidden>
+      <h2>Experience</h2>
+      <ul>
+        <li>Professional with around 4 years of experience in the IT industry.</li>
+        <li>Result-oriented Engineer with strong knowledge in AWS, DevOps, and Python.</li>
+        <li>Extensive experience in requirement analysis, design, development, and deployment of microservices in the cloud.</li>
+        <li>Worked in Agile projects for the last 3.5 years.</li>
+        <li>Designed and deployed RESTful APIs using AWS services ensuring scalability and performance.</li>
+        <li>Migrated serverless workloads to AWS Lambda, improving cost efficiency and reliability.</li>
+        <li>Managed containerized applications using AWS ECS for efficient orchestration.</li>
+        <li>Used ALB for traffic distribution and EventBridge for event-driven integration.</li>
+        <li>Worked with KONE on cloud migration and infrastructure enhancement projects.</li>
+        <li>Experience using SFTP & FTP for file transfers (CSV, XML, JSON).</li>
+        <li>Industries: Real Estate and Manufacturing.</li>
+      </ul>
+      <h3 style="margin-top: 30px;">Prime AWS Expertise:</h3>
+      <ul>
+        <li>Lambda, API Gateway, Step Functions, Glue, Kafka</li>
+        <li>CloudWatch, Secret Manager, VPC, CloudTrail</li>
+        <li>EC2, S3, ALB, RDS, DynamoDB, Auto Scaling</li>
+      </ul>
+    </section>
+
+    <section id="certifications-panel" class="content" role="tabpanel" aria-labelledby="certifications-tab" hidden>
       <h2>Certifications</h2>
       <ul>
         <li>AWS Certified Developer – Associate</li>
-        <li>AWS Certified Solution Architect – Associate</li>
+        <li>AWS Certified Solutions Architect – Associate</li>
         <li>AWS Certified Cloud Practitioner</li>
       </ul>
-    </div>
+    </section>
 
-    <div id="expertise" class="section">
-      <h2>Prime Expertise</h2>
-      <ul>
-        <li>Lambda, API Gateway, Step Functions</li>
-        <li>Glue, Kafka, CloudWatch, Secrets Manager</li>
-        <li>EC2, S3, RDS, ALB, Auto Scaling</li>
-        <li>DynamoDB, VPC, CloudTrail</li>
-      </ul>
-    </div>
-
-    <div id="experience" class="section">
-      <h2>Experience</h2>
-      <ul>
-        <li>Designed and deployed RESTful APIs using AWS services</li>
-        <li>Migrated serverless functions to AWS Lambda for better performance and lower cost</li>
-        <li>Handled containerization with ECS and traffic management with ALB</li>
-        <li>Used EventBridge to build event-driven architectures</li>
-        <li>Worked with KONE Corporation to migrate workloads to AWS</li>
-        <li>Handled data transfer via SFTP/FTP with csv, XML, and JSON</li>
-        <li><strong>Industries:</strong> Real Estate, Manufacturing</li>
-      </ul>
-    </div>
-
-    <div id="contact" class="section">
+    <section id="contact-panel" class="content" role="tabpanel" aria-labelledby="contact-tab" hidden>
       <h2>Contact</h2>
-      <p><strong>Phone:</strong> 8379803650</p>
-      <p><strong>Email:</strong> kedarankush845@gmail.com</p>
-      <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/ankushkedar" target="_blank">ankushkedar</a></p>
-    </div>
-  </div>
+      <div class="contact-info">
+        <p><strong>Phone:</strong> 8379803650</p>
+        <p><strong>Email:</strong> kedarankush845@gmail.com</p>
+        <p><strong>LinkedIn:</strong> 
+          <a href="https://www.linkedin.com/in/ankushkedar" target="_blank" rel="noopener noreferrer">linkedin.com/in/ankushkedar</a>
+        </p>
+        <a href="Ankush's Resume.pdf" download class="btn-download" aria-label="Download Resume">Download Resume</a>
+      </div>
+    </section>
+  </main>
 
   <script>
-    function showSection(id) {
-      document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
-      document.getElementById(id).classList.add('active');
-    }
+    // Tab switching logic
+    const tabs = document.querySelectorAll('.tab-list button');
+    const panels = document.querySelectorAll('section[role="tabpanel"]');
 
-    function toggleDark() {
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Deactivate all tabs and hide panels
+        tabs.forEach(t => {
+          t.classList.remove('active');
+          t.setAttribute('aria-selected', 'false');
+        });
+        panels.forEach(p => p.hidden = true);
+
+        // Activate clicked tab and show corresponding panel
+        tab.classList.add('active');
+        tab.setAttribute('aria-selected', 'true');
+        const panel = document.getElementById(tab.getAttribute('aria-controls'));
+        panel.hidden = false;
+      });
+    });
+
+    // Dark/Light mode toggle
+    const toggleButton = document.querySelector('button.toggle-darkmode');
+    toggleButton.addEventListener('click', () => {
       document.body.classList.toggle('dark');
-    }
+      if(document.body.classList.contains('dark')) {
+        toggleButton.textContent = 'Light Mode';
+      } else {
+        toggleButton.textContent = 'Dark Mode';
+      }
+    });
   </script>
+
 </body>
 </html>
