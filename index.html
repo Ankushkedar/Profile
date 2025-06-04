@@ -2,221 +2,169 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Ankush Kedar | AWS Developer</title>
   <style>
-    /* Reset & Base */
+    :root {
+      --bg-light: #f4f6fa;
+      --bg-dark: #1a1a1a;
+      --text-light: #333;
+      --text-dark: #f4f4f4;
+      --card-bg-light: #fff;
+      --card-bg-dark: #2a2a2a;
+      --accent: #007acc;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
+
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      min-height: 100vh;
-      background: #f5f7fa;
-      color: #1b263b;
       display: flex;
-      flex-direction: row;
+      height: 100vh;
+      color: var(--text-light);
+      background: linear-gradient(to right, #e2ebf7, #f9fafc);
+      transition: background 0.3s, color 0.3s;
     }
 
-    /* Sidebar */
+    body.dark {
+      background: var(--bg-dark);
+      color: var(--text-dark);
+    }
+
     .sidebar {
       width: 30%;
-      background: #0a2540;
-      color: #d1d9e6;
-      padding: 50px 30px;
-      box-shadow: 2px 0 15px rgba(0, 0, 0, 0.15);
+      background-color: var(--card-bg-light);
+      padding: 40px 20px;
       text-align: center;
-      position: relative;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     }
-    .sidebar img {
+
+    .sidebar img.profile {
       width: 160px;
       height: 160px;
       border-radius: 50%;
       object-fit: cover;
-      border: 5px solid #ff9900; /* AWS Orange */
-      box-shadow: 0 0 15px #ff9900aa;
-      margin-bottom: 20px;
-    }
-    .sidebar h1 {
-      font-size: 28px;
-      color: #ff9900;
-      margin-bottom: 8px;
-      font-weight: 700;
-    }
-    .sidebar h3 {
-      font-size: 18px;
-      font-weight: 500;
-      color: #bbd7ff;
-      margin-bottom: 14px;
-    }
-    .sidebar p.slogan {
-      font-style: italic;
-      font-weight: 400;
-      font-size: 16px;
-      color: #a8bcd7;
-      line-height: 1.3;
-    }
-    /* AWS logo in corner */
-    .sidebar::after {
-      content: "";
-      position: absolute;
-      bottom: 20px;
-      right: 20px;
-      width: 50px;
-      height: 50px;
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg');
-      background-size: contain;
-      background-repeat: no-repeat;
-      opacity: 0.15;
+      border: 4px solid var(--accent);
     }
 
-    /* Main Content */
-    .main {
-      width: 70%;
-      padding: 50px 60px;
-      display: flex;
-      flex-direction: column;
-      background: #fff;
-      box-shadow: -2px 0 15px rgba(0, 0, 0, 0.07);
-      position: relative;
-    }
-    /* AWS logo in main corner */
-    .main::after {
-      content: "";
+    .sidebar img.logo {
+      width: 60px;
       position: absolute;
       top: 20px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
-      background-image: url('https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg');
-      background-size: contain;
-      background-repeat: no-repeat;
-      opacity: 0.1;
+      left: 20px;
     }
 
-    /* Navigation Buttons */
+    .sidebar h1 {
+      margin-top: 20px;
+      font-size: 26px;
+      color: var(--accent);
+    }
+
+    .sidebar h3 {
+      font-size: 18px;
+      color: #555;
+      margin-top: 6px;
+    }
+
+    .sidebar p.slogan {
+      margin-top: 14px;
+      font-style: italic;
+      color: #777;
+    }
+
+    .main {
+      width: 70%;
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+    }
+
     .nav-buttons {
       align-self: flex-end;
-      margin-bottom: 30px;
+      margin-bottom: 20px;
       display: flex;
-      gap: 18px;
-    }
-    .nav-buttons button {
-      padding: 12px 22px;
-      background-color: #ff9900;
-      color: #0a2540;
-      border: none;
-      border-radius: 8px;
-      font-weight: 600;
-      font-size: 16px;
-      cursor: pointer;
-      box-shadow: 0 4px 8px rgb(255 153 0 / 0.3);
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-    }
-    .nav-buttons button:hover {
-      background-color: #cc7a00;
-      box-shadow: 0 6px 12px rgb(204 122 0 / 0.6);
-      color: white;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
-    /* Sections */
+    .nav-buttons button,
+    .dark-toggle,
+    .download-btn {
+      padding: 10px 14px;
+      background-color: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .nav-buttons button:hover,
+    .dark-toggle:hover,
+    .download-btn:hover {
+      background-color: #005b9f;
+    }
+
     .section {
       display: none;
+      background-color: var(--card-bg-light);
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.08);
       flex: 1;
       overflow-y: auto;
-      padding-right: 20px;
     }
+
+    body.dark .section {
+      background-color: var(--card-bg-dark);
+    }
+
     .section.active {
       display: block;
     }
+
     h2 {
-      color: #ff9900;
-      font-weight: 700;
-      font-size: 28px;
-      margin-bottom: 20px;
-      border-bottom: 3px solid #ff9900;
-      padding-bottom: 6px;
-      max-width: max-content;
+      color: var(--accent);
+      margin-bottom: 16px;
     }
 
-    /* Lists and paragraphs */
     ul {
-      padding-left: 22px;
-      margin-top: 10px;
-      margin-bottom: 25px;
-      line-height: 1.5;
-      color: #33475b;
+      padding-left: 20px;
     }
+
     ul li {
-      margin-bottom: 10px;
-      font-size: 16px;
-    }
-    p, strong {
-      font-size: 16px;
-      color: #33475b;
-      margin-bottom: 12px;
-      line-height: 1.4;
+      margin-bottom: 6px;
     }
 
-    /* Contact links style */
-    .contact-link {
-      color: #0a2540;
-      font-weight: 600;
-      text-decoration: none;
-      display: inline-flex;
-      align-items: center;
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
       gap: 8px;
-      margin-bottom: 14px;
-      font-size: 17px;
-      transition: color 0.3s ease;
-    }
-    .contact-link:hover {
-      color: #ff9900;
-      text-decoration: underline;
-    }
-    .contact-link svg {
-      width: 22px;
-      height: 22px;
-      fill: #0a2540;
-      transition: fill 0.3s ease;
-    }
-    .contact-link:hover svg {
-      fill: #ff9900;
+      margin-top: 12px;
     }
 
-    /* Scrollbar for main section */
-    .section::-webkit-scrollbar {
-      width: 7px;
-    }
-    .section::-webkit-scrollbar-thumb {
-      background-color: #ff9900aa;
+    .skills span {
+      background: #007acc;
+      color: white;
+      padding: 6px 12px;
       border-radius: 20px;
-    }
-    .section::-webkit-scrollbar-track {
-      background-color: transparent;
+      font-size: 13px;
     }
 
-    /* Responsive for smaller screens */
-    @media (max-width: 900px) {
-      body {
-        flex-direction: column;
-      }
-      .sidebar, .main {
-        width: 100%;
-        height: auto;
-        padding: 30px 20px;
-      }
-      .nav-buttons {
-        justify-content: center;
-      }
+    a {
+      color: #007acc;
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
   <div class="sidebar">
-    <img src="your-photo.jpg" alt="Ankush Kedar" />
+    <img class="logo" src="aws.jpg" alt="AWS Logo" />
+    <img class="profile" src="pic.png" alt="Ankush Kedar" />
     <h1>Ankush Kedar</h1>
     <h3>AWS Developer</h3>
     <p class="slogan">Building scalable cloud solutions with precision and passion.</p>
@@ -224,117 +172,76 @@
 
   <div class="main">
     <div class="nav-buttons">
-      <button onclick="showSection('summary')">General Summary</button>
-      <button onclick="showSection('expertise')">Prime Expertise</button>
-      <button onclick="showSection('technical')">Technical Skills</button>
+      <button onclick="showSection('home')">Home</button>
+      <button onclick="showSection('about')">About</button>
       <button onclick="showSection('certifications')">Certifications</button>
-      <button onclick="showSection('industries')">Industries</button>
-      <button onclick="showSection('work')">Work Experience</button>
+      <button onclick="showSection('expertise')">Expertise</button>
+      <button onclick="showSection('experience')">Experience</button>
       <button onclick="showSection('contact')">Contact</button>
+      <button class="dark-toggle" onclick="toggleDark()">Toggle Theme</button>
+      <a href="Ankushs Resume.pdf" class="download-btn" download>Download Resume</a>
     </div>
 
-    <!-- General Summary -->
-    <div id="summary" class="section active">
-      <h2>General Summary</h2>
+    <div id="home" class="section active">
+      <h2>Welcome</h2>
+      <p>Professional with 4+ years of experience in IT industry. Specialized in cloud architecture, automation, and scalable application development.</p>
+    </div>
+
+    <div id="about" class="section">
+      <h2>About Me</h2>
       <ul>
-        <li>Professional with around 4 years of experience in IT industry.</li>
-        <li>Result-oriented Engineer having good knowledge in areas of AWS, DevOps and Python & good understanding of infrastructure and networking concepts.</li>
-        <li>Extensive experience with requirement analysis, design, development, customizations and implementation of various Cloud based applications/microservices.</li>
-        <li>Working in agile projects since last 3.5 years.</li>
-        <li>Skillset includes following technologies:
-          <ul>
-            <li>AWS Cloud</li>
-            <li>DevOps</li>
-            <li>Python</li>
-            <li>AWS Infra & Cost optimization</li>
-          </ul>
-        </li>
+        <li>❖ Around 4 years of IT industry experience</li>
+        <li>❖ Strong in AWS, DevOps, Python</li>
+        <li>❖ Experience in Cloud-based applications & microservices</li>
+        <li>❖ Worked on agile projects (3.5+ years)</li>
       </ul>
+      <h3>Skillset:</h3>
+      <div class="skills">
+        <span>AWS Cloud</span>
+        <span>DevOps</span>
+        <span>Python</span>
+        <span>Cost Optimization</span>
+        <span>Infra Design</span>
+      </div>
     </div>
 
-    <!-- Prime Expertise -->
-    <div id="expertise" class="section">
-      <h2>Prime Expertise</h2>
-      <p>Responsible for designing, developing and deploying highly available, scalable and fault tolerant systems using the following AWS services:</p>
-      <ul>
-        <li>Lambda</li>
-        <li>API Gateway</li>
-        <li>Step Functions</li>
-        <li>Glue</li>
-        <li>Kafka</li>
-        <li>CloudWatch</li>
-        <li>Secrets Manager</li>
-        <li>VPC</li>
-        <li>CloudTrail</li>
-        <li>EC2</li>
-        <li>S3</li>
-        <li>ALB (Application Load Balancer)</li>
-        <li>RDS</li>
-        <li>DynamoDB</li>
-        <li>Auto Scaling</li>
-      </ul>
-    </div>
-
-    <!-- Technical Skills -->
-    <div id="technical" class="section">
-      <h2>Technical Skills</h2>
-      <ul>
-        <li>AWS (Lambda, EC2, S3, API Gateway, Step Functions, DynamoDB, SQS, CloudWatch)</li>
-        <li>Infrastructure as Code: AWS CDK, CloudFormation</li>
-        <li>DevOps Tools: Git, Azure DevOps, Jenkins</li>
-        <li>Programming Languages: Python, JavaScript</li>
-        <li>Containers: Docker, ECS</li>
-        <li>Monitoring: CloudWatch, AWS X-Ray</li>
-      </ul>
-    </div>
-
-    <!-- Certifications -->
     <div id="certifications" class="section">
       <h2>Certifications</h2>
       <ul>
         <li>AWS Certified Developer – Associate</li>
-        <li>AWS Certified Solutions Architect – Associate</li>
+        <li>AWS Certified Solution Architect – Associate</li>
         <li>AWS Certified Cloud Practitioner</li>
       </ul>
     </div>
 
-    <!-- Industries -->
-    <div id="industries" class="section">
-      <h2>Industries Worked For</h2>
+    <div id="expertise" class="section">
+      <h2>Prime Expertise</h2>
       <ul>
-        <li>Real Estate Industry</li>
-        <li>Manufacturing Industry</li>
+        <li>Lambda, API Gateway, Step Functions</li>
+        <li>Glue, Kafka, CloudWatch, Secrets Manager</li>
+        <li>EC2, S3, RDS, ALB, Auto Scaling</li>
+        <li>DynamoDB, VPC, CloudTrail</li>
       </ul>
     </div>
 
-    <!-- Work Experience -->
-    <div id="work" class="section">
-      <h2>Work Experience</h2>
+    <div id="experience" class="section">
+      <h2>Experience</h2>
       <ul>
-        <li>Designed, developed, and deployed RESTful APIs to support application integration, using AWS services to ensure scalability and high performance.</li>
-        <li>Automated workflows by migrating serverless functions to AWS Lambda, optimizing function performance and reducing costs.</li>
-        <li>Managed containerized applications by migrating workloads to AWS ECS, ensuring efficient orchestration and scalability.</li>
-        <li>Configured and managed AWS ALB to distribute incoming application traffic across multiple targets, enhancing fault tolerance and availability.</li>
-        <li>Utilized AWS EventBridge to build event-driven architectures, facilitating seamless integration of various AWS services and external systems.</li>
-        <li>Worked with KONE, a global leader in the elevator and escalator industry, to enhance their digital infrastructure by migrating critical workloads to AWS cloud, improving system efficiency and reliability.</li>
-        <li>Used SFTP & FTP to send & receive files from clients with various file formats such as CSV, XML & JSON.</li>
+        <li>Designed and deployed RESTful APIs using AWS services</li>
+        <li>Migrated serverless functions to AWS Lambda for better performance and lower cost</li>
+        <li>Handled containerization with ECS and traffic management with ALB</li>
+        <li>Used EventBridge to build event-driven architectures</li>
+        <li>Worked with KONE Corporation to migrate workloads to AWS</li>
+        <li>Handled data transfer via SFTP/FTP with csv, XML, and JSON</li>
+        <li><strong>Industries:</strong> Real Estate, Manufacturing</li>
       </ul>
     </div>
 
-    <!-- Contact -->
     <div id="contact" class="section">
       <h2>Contact</h2>
-      <p><strong>Phone:</strong> +91 8379803650</p>
-      <p><strong>Email:</strong> <a href="mailto:kedarankush845@gmail.com" class="contact-link">kedarankush845@gmail.com</a></p>
-      <p><strong>LinkedIn:</strong>
-        <a href="https://www.linkedin.com/in/ankushkedar" target="_blank" rel="noopener" class="contact-link" aria-label="LinkedIn Profile">
-          <!-- LinkedIn SVG icon -->
-          <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" >
-            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.024-3.039-1.85-3.039-1.853 0-2.136 1.445-2.136 2.939v5.669H9.354V9h3.414v1.561h.049c.476-.9 1.637-1.85 3.368-1.85 3.602 0 4.268 2.37 4.268 5.452v6.289zM5.337 7.433c-1.144 0-2.07-.926-2.07-2.07s.926-2.07 2.07-2.07 2.07.926 2.07 2.07-.927 2.07-2.07 2.07zM6.994 20.452H3.68V9h3.314v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.727v20.545C0 23.223.792 24 1.771 24h20.451C23.2 24 24 23.223 24 22.273V1.727C24 .774 23.2 0 22.225 0z"/>
-          </svg>
-          ankushkedar
-        </a>
-      </p>
+      <p><strong>Phone:</strong> 8379803650</p>
+      <p><strong>Email:</strong> kedarankush845@gmail.com</p>
+      <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/ankushkedar" target="_blank">ankushkedar</a></p>
     </div>
   </div>
 
@@ -342,6 +249,10 @@
     function showSection(id) {
       document.querySelectorAll('.section').forEach(sec => sec.classList.remove('active'));
       document.getElementById(id).classList.add('active');
+    }
+
+    function toggleDark() {
+      document.body.classList.toggle('dark');
     }
   </script>
 </body>
