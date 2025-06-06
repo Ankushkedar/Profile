@@ -21,37 +21,22 @@
             color: white;
             padding: 2rem;
             text-align: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 2rem;
         }
 
-        .profile-container {
-            position: relative;
-        }
-
-        img.profile-pic {
-            width: 160px;
-            height: 160px;
+        header img.profile-pic {
+            width: 150px;
+            height: 150px;
             border-radius: 50%;
             border: 4px solid white;
+            margin-bottom: 1rem;
         }
 
-        .aws-logo-side {
-            position: absolute;
-            bottom: -10px;
-            left: -40px;
-            width: 60px;
-            height: auto;
-        }
-
-        .header-text h1 {
+        header h1 {
             margin: 0;
             font-size: 2rem;
         }
 
-        .header-text p {
+        header p {
             margin: 0.3rem 0 0;
             font-size: 1.2rem;
             font-weight: 300;
@@ -71,19 +56,22 @@
 
         .certification-logos {
             margin-top: 1rem;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
         }
 
         .certification-logos img {
-            height: 80px;
+            height: 90px;
+            margin: 0 10px;
+            vertical-align: middle;
         }
 
         .contact p {
             font-size: 1.1rem;
             margin: 0.5rem 0;
+        }
+
+        ul.skills-list {
+            list-style-type: disc;
+            padding-left: 20px;
         }
 
         footer {
@@ -94,27 +82,18 @@
             margin-top: 2rem;
         }
 
-        ul.skills {
-            list-style-type: disc;
-            padding-left: 1.5rem;
-        }
-
         @media (max-width: 600px) {
-            .header-text h1 {
+            header h1 {
                 font-size: 1.5rem;
             }
 
-            .header-text p {
+            header p {
                 font-size: 1rem;
-            }
-
-            .aws-logo-side {
-                width: 40px;
-                left: -20px;
             }
 
             .certification-logos img {
                 height: 60px;
+                margin: 5px;
             }
         }
     </style>
@@ -122,33 +101,29 @@
 
 <body>
     <header>
-        <div class="profile-container">
-            <img src="pic.png" alt="Ankush Kedar" class="profile-pic">
-            <img src="aws_logo.png" alt="AWS Logo" class="aws-logo-side">
-        </div>
-        <div class="header-text">
-            <h1>Ankush Kedar</h1>
-            <p>AWS Developer & Engineer</p>
-        </div>
+        <img src="pic.png" alt="Ankush Kedar" class="profile-pic">
+        <h1>Ankush Kedar</h1>
+        <p>AWS Developer & Engineer</p>
     </header>
 
     <section>
         <h2>About Me</h2>
-        <p><strong>Cloud Enthusiast | AWS Developer | Solution Architect</strong></p>
-        <p>Hey, I am Ankush Kedar, a passionate and dedicated AWS Developer. I specialize in crafting, deploying, and optimizing scalable, cost-effective cloud architectures. With deep expertise across development, testing, and CI/CD deployment workflows, I empower businesses with agile cloud-native applications that are resilient and maintainable. I love translating business problems into technical solutions with a strategic mindset and hands-on engineering capability. I believe in automation, clean code, and well-architected solutions.</p>
+        <p><strong>Cloud Enthusiast | AWS Developer | Solution Architect in Progress</strong></p>
+        <p>Hey, I am Ankush Kedar, a passionate and dedicated AWS Developer. My expertise lies in architecting, developing,
+            testing, and deploying scalable and secure cloud solutions using the AWS ecosystem. I strive to design highly available,
+            fault-tolerant, and cost-efficient cloud applications. I am always focused on automation, innovation, and best practices
+            to drive digital transformation in modern enterprises. With a commitment to continuous learning, I enjoy working on
+            challenging cloud-native problems that deliver measurable business value.</p>
     </section>
 
     <section>
         <h2>Technical Skills</h2>
-        <ul class="skills">
-            <li>AWS Lambda, S3, Glue, DynamoDB, Athena, Redshift, CloudWatch, CloudTrail</li>
-            <li>CodeBuild, CodeArtifact, CloudFormation, Auto Scaling, Secret Manager</li>
-            <li>Serverless architecture & event-driven design</li>
-            <li>REST API & Microservices development</li>
-            <li>Data Lake, ETL Pipelines & Analytics Solutions</li>
-            <li>DevOps tools - AWS CLI, Git, Jira, SQL</li>
-            <li>Monitoring, logging, and security best practices</li>
-            <li>AI/ML services and data processing workflows</li>
+        <ul class="skills-list">
+            <li>AWS Lambda, S3, Glue, CloudWatch, CloudTrail, DynamoDB, Athena, Redshift</li>
+            <li>AI/ML Services, AWS CodeBuild, CodeArtifact, CloudFormation, Auto Scaling</li>
+            <li>Secrets Manager, AWS CLI, Git, SQL, Jira</li>
+            <li>ETL pipeline development, API microservices, serverless architecture</li>
+            <li>Monitoring, Security, Event-driven architecture, Infrastructure as Code</li>
         </ul>
     </section>
 
